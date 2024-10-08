@@ -13,10 +13,12 @@ function App() {
     const [todoValue, setTodoValue] = useState([]);
 
     const getTasks = async () => {
-        const res = await api.get('/task');
-        console.log('rrrrrrr', res);
-        setTodoList(res.data.data);
-        //정의
+        try {
+            const res = await api.get('/task');
+            setTodoList(res.data.data);
+        } catch (error) {
+            console.error('Error fetching tasks:', error);
+        }
     };
     const addTask = async () => {
         try {
@@ -59,6 +61,13 @@ function App() {
             console.error('タスクの更新中にエラーが発生しました:', error);
         }
     };
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter' && todoValue.trim() !== '') {
+            e.preventDefault();
+            addTask();
+        }
+    };
+
 
     useEffect(() => {
         getTasks();
@@ -73,16 +82,12 @@ function App() {
                     className="input-box"
                     value={todoValue}
                     onChange={(e) => setTodoValue(e.target.value)}
-
+                    onKeyPress={handleKeyPress}
                 />
 
                 </Col>
                 <Col xs={12} sm={2}>
-                    <button className="button-add" onClick={()=>{
-                        if (e.key === 'Enter' && todoValue.trim() !== '') { 
-                            addTask();
-                        }
-                    }}>
+                    <button className="button-add" onClick={addTask}>
                         추가
                     </button>
                 </Col>
