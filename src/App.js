@@ -67,19 +67,20 @@ function App() {
         <Container>
             <Row className="add-item-row">
                 <Col xs={12} sm={10}>
-                    <input
-                        type="text"
-                        placeholder="할일을 입력하세요"
-                        className="input-box"
-                        value={todoValue}
-                        onChange={(e) => setTodoValue(e.target.value)} // Handle input change
-                        onKeyDown={(e) => { // Handle the Enter key
-                            if (e.key === 'Enter') {
-                                e.preventDefault();
-                               
-                            }
-                        }}
-                    />
+                <input
+                    type="text"
+                    placeholder="할일을 입력하세요"
+                    className="input-box"
+                    value={todoValue}
+                    onChange={(e) => setTodoValue(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            addTask();
+                        }
+                    }}
+                />
+
                 </Col>
                 <Col xs={12} sm={2}>
                     <button className="button-add" onClick={addTask}>
