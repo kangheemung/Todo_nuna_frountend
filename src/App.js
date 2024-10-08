@@ -74,7 +74,7 @@ function App() {
                     value={todoValue}
                     onChange={(e) => setTodoValue(e.target.value)}
                     onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
+                        if (e.key === 'Enter' && todoValue.trim() !== '') { // Check if todoValue is not empty
                             e.preventDefault();
                             addTask();
                         }
