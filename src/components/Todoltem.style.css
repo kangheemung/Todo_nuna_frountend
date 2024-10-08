@@ -1,0 +1,11 @@
+
+.todo-item.completed {
+    background-color: lightgray; /* Change text color to gray for completed items */
+    text-decoration: line-through; /* Apply line-through styling for completed items */
+    color: #fff; 
+}
+
+.button-delete.completed-button {
+    background-color: gray; /* Change button color to gray for completed items */
+    color: #fff; /* Set text color to white for better contrast */
+}
