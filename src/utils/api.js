@@ -1,7 +1,7 @@
 import axios from "axios";
-
+//PROXY추가 함으로써 https에서 호출해도에러 안나게 조율
 const api = axios.create({
-  baseURL: `${process.env.REACT_APP_BACKEND_URL}/api`,
+  baseURL: `${process.env.REACT_APP_BECKEND_PROXY}/api`,
   headers: {
     "Content-Type": "application/json",
   },
