@@ -75,6 +75,7 @@ function App() {
                         onChange={(e) => setTodoValue(e.target.value)}
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {
+                                e.preventDefault();
                                 addTask();
                             }
                         }}
