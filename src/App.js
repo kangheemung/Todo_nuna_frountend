@@ -73,17 +73,16 @@ function App() {
                     className="input-box"
                     value={todoValue}
                     onChange={(e) => setTodoValue(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter' && todoValue.trim() !== '') { // Check if todoValue is not empty
-                            e.preventDefault();
-                            addTask();
-                        }
-                    }}
+
                 />
 
                 </Col>
                 <Col xs={12} sm={2}>
-                    <button className="button-add" onClick={addTask}>
+                    <button className="button-add" onClick={()=>{
+                        if (e.key === 'Enter' && todoValue.trim() !== '') { 
+                            addTask();
+                        }
+                    }}>
                         추가
                     </button>
                 </Col>
