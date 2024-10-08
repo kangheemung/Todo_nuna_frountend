@@ -72,11 +72,11 @@ function App() {
                         placeholder="할일을 입력하세요"
                         className="input-box"
                         value={todoValue}
-                        onChange={(e) => setTodoValue(e.target.value)}
-                        onKeyDown={(e) => {
+                        onChange={(e) => setTodoValue(e.target.value)} // Handle input change
+                        onKeyDown={(e) => { // Handle the Enter key
                             if (e.key === 'Enter') {
                                 e.preventDefault();
-                                addTask();
+                               
                             }
                         }}
                     />
