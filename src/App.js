@@ -2,6 +2,12 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
 import TodoBoard from './components/TodoBoard';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+
+
+import LoginPage from "./pages/LoginPage";
+import TodoPage from "./pages/TodoPage";
+import RegisterPage from "./pages/RegisterPage";
 import api from './utils/api';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -73,6 +79,15 @@ function App() {
         getTasks();
     }, []);
     return (
+        <>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<TodoPage />} />
+                    <Route path="/user" element={<RegisterPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                </Routes>
+            </Router>
+
         <Container>
             <Row className="add-item-row">
                 <Col xs={12} sm={10}>
@@ -94,6 +109,7 @@ function App() {
             </Row>
             <TodoBoard todoList={todoList} deleteTask={deleteTask} updateTask={updateTask} />
         </Container>
+        </>
     );
 }
 
