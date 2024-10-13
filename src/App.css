@@ -75,7 +75,7 @@ body{
   height: 100vh;
   
 }
-
+.red-error{color: red;}
 .button-box{
   display:flex;
   justify-content: space-between
