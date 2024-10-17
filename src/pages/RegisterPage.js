@@ -1,15 +1,16 @@
 import React,{useState} from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import api from'../utils/api'
 import '../App.css';
 const RegisterPage = () => {
-
     const [name,setName]=useState('');
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     const [secPassword,setSecPassword]=useState('');
     const [error,setError]=useState('');
-    const handleSubmit =(e)=>{
+    
+    const handleSubmit = async (e) =>{
         e.preventDefault();
         try{
             if (!name || !email || !password || !secPassword)  {
@@ -18,7 +19,8 @@ const RegisterPage = () => {
             //에러:페스워드가 일치하지 않는다
             throw new Error("not match password!");
         }
-    
+    const response = await api.post('/user',{name,email,password});
+        console.log("rrrr",response );
         ///api
         }catch(error){
             setError(error.message);

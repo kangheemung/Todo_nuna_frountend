@@ -10,7 +10,7 @@ const TodoPage = () => {
   const [todoValue, setTodoValue] = useState("");
 
   const getTasks = async () => {
-    const response = await api.get("/tasks");
+    const response = await api.get("/task");
     setTodoList(response.data.data);
   };
   useEffect(() => {
@@ -18,7 +18,7 @@ const TodoPage = () => {
   }, []);
   const addTodo = async () => {
     try {
-      const response = await api.post("/tasks", {
+      const response = await api.post("/task", {
         task: todoValue,
         isComplete: false,
       });
