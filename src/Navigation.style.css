@@ -1,0 +1,5 @@
+.link {
+    font-weight: bold;
+    text-decoration: none; /* Remove underline from links */
+    color: black; /* Change text color to black */
+}
