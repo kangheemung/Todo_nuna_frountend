@@ -9,7 +9,7 @@ const RegisterPage = () => {
     const [password,setPassword]=useState('');
     const [secPassword,setSecPassword]=useState('');
     const [error,setError]=useState('');
-    
+
     const handleSubmit = async (e) =>{
         e.preventDefault();
         try{

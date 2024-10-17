@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import TodoBoard from '../components/TodoBoard';
 import api from '../utils/api';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 
 const TodoPage = () => {
-    const { id } = useParams();
+    // const { id } = useParams();
     //저장 스테이트
     const [todoList, setTodoList] = useState([]);
     const [todoValue, setTodoValue] = useState([]);
