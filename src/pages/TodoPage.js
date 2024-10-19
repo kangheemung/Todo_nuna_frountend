@@ -11,10 +11,11 @@ const TodoPage = () => {
     // const { id } = useParams();
     //저장 스테이트
     const [todoList, setTodoList] = useState([]);
-    const [todoValue, setTodoValue] = useState([]);
+    const [todoValue, setTodoValue] = useState('');
 
     const getTasks = async () => {
         const response = await api.get('/task');
+        console.log(response.data.data);
         setTodoList(response.data.data);
     };
     useEffect(() => {
@@ -25,6 +26,7 @@ const TodoPage = () => {
             const res = await api.post('/task', {
                 task: todoValue,
                 isComplete: false,
+                
             });
             if (res.status === 200) {
                 console.log('성공');

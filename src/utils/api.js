@@ -4,6 +4,7 @@ const api = axios.create({
     baseURL: `${process.env.REACT_APP_BECKEND_PROXY}/api`,
     headers: {
         'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + sessionStorage.getItem('token'),
     },
 });
 /**
