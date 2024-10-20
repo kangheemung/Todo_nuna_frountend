@@ -8,6 +8,7 @@
 
 .login_link {
     border: none;
+    margin: 1em;
     padding: 0; /* Remove padding */
     background: none;
     font-weight: bold;/* Hide the text by making it transparent */
