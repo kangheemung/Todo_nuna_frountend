@@ -4,7 +4,7 @@ import { Nav } from 'react-bootstrap'; // Importing Nav component from react-boo
 import { Link } from 'react-router-dom';
 import './Navigation.style.css';
 
-const Navigation = () => {
+const Navigation = ({ handleLogout, isLoggedIn }) => {
     return (
         <div>
             <Navbar bg="light" expand="lg">
@@ -15,12 +15,19 @@ const Navigation = () => {
                         <Link to="/" className="link">
                             Todo
                         </Link>
-                        <Link to="/user" className="link">
-                            Register
-                        </Link>
-                        <Link to="/login" className="link">
-                            Login
-                        </Link>
+                        {!isLoggedIn && (
+                            <>
+                                <Link to="/user" className="link">
+                                    Register
+                                </Link>
+                                <Link to="/login" className="link">
+                                    Login
+                                </Link>
+                            </>
+                        )}
+                        <button className="login_link" onClick={handleLogout}>
+                            Logout
+                        </button>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

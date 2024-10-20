@@ -1,5 +1,15 @@
 .link {
+    margin: 1em;
     font-weight: bold;
+    cursor: pointer;
     text-decoration: none; /* Remove underline from links */
     color: black; /* Change text color to black */
+}
+
+.login_link {
+    border: none;
+    padding: 0; /* Remove padding */
+    background: none;
+    font-weight: bold;/* Hide the text by making it transparent */
+    cursor: pointer;
 }

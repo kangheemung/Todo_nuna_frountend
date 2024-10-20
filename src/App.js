@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import TodoPage from './pages/TodoPage';
 import RegisterPage from './pages/RegisterPage';
@@ -10,6 +10,8 @@ import PrivateRoute from './route/PrivateRoute';
 import api from './utils/api';
 function App() {
     const [user, setUser] = useState(null);
+    const navigate = useNavigate();
+    const isLoggedIn = !!user;
     const getUser = async () => {
         //토큰을 통해 유저 정보를 가져온다.
         try {
@@ -28,12 +30,18 @@ function App() {
             setUser(null);
         }
     };
+    const handleLogout = () => {
+        // Clear user session and redirect to login page
+        sessionStorage.removeItem('token');
+        setUser(null);
+        navigate('/login'); // Redirect to login page after logout
+    };
     useEffect(() => {
         getUser();
     }, []);
     return (
         <>
-            <Navigation />
+            <Navigation handleLogout={handleLogout} isLoggedIn={isLoggedIn} />
 
             <Routes>
                 <Route
