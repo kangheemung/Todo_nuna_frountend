@@ -26,15 +26,15 @@ const TodoPage = () => {
             const res = await api.post('/task', {
                 task: todoValue,
                 isComplete: false,
-                
+  
             });
             if (res.status === 200) {
                 console.log('성공');
-                //입력한 값이 안사라짐
-                setTodoValue('');
                 //추가한 값이 안보임
                 getTasks();
             }
+            //입력한 값이 안사라짐
+            setTodoValue('');
         } catch (err) {
             console.error('Error adding task:', err);
         }

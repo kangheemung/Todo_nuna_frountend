@@ -15,13 +15,16 @@ function App() {
         try {
             const storedToken = sessionStorage.getItem('token');
             if (storedToken) {
-                // api.defaults.headers['authorization']="Bearer "+storedToken
-                const response = await api.get('/user/me');
-                console.log('rrr', response);
+                // api.defaults.headers['authorization'] = 'Bearer ' + storedToken;
+                const url = '/user/me';
+                console.log('Requesting URL:', api.defaults.baseURL + url);
+                const response = await api.get(url);
+                console.log('Response Data:', response.data);
                 setUser(response.data.user);
             }
             // const response = api.get('/user/??');
         } catch (error) {
+            console.error('Error fetching user data:', error);
             setUser(null);
         }
     };
