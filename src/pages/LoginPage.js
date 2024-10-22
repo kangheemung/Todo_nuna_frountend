@@ -12,30 +12,34 @@ const LoginPage = ({ user, setUser }) => {
     const navigate = useNavigate();
     const handleLogin = async (e) => {
         e.preventDefault();
+        setError('');
+        if (!email || !password) {
+            setError('Email and password are required');
+            return;
+        }
         try {
-            if (!email || !password) {
-                throw new Error('Email and password are required');
-            }
             const response = await api.post('/user/login', { email, password });
-            console.log('Response:', response);
 
-            if (response.status === 200) {
-                setUser(response.data.user);
-                sessionStorage.setItem('token', response.data.token);
-                api.defaults.headers['authorization'] = 'Bearer ' + response.data.token;
+            console.log(response); // レスポンス内容を確認
+
+            if (response && response.status === 200) {
+                setUser(response?.data?.user);
+                sessionStorage.setItem('token', response?.data?.token);
+                api.defaults.headers['authorization'] = 'Bearer ' + response?.data?.token;
                 setError('');
                 navigate('/');
-                // Successful response handling logic can be added here if needed
-            } else if (response.data.status === 'fail') {
-                throw new Error(response.data.error); // Throw an error if authentication fails
             } else {
-                throw new Error('An error occurred during login');
+                throw new Error(response?.data?.message || 'An error occurred during login.');
             }
         } catch (error) {
-            console.error(error); // Log the error message for debugging
-            setError(error.message);
+            if (error.response && error.response.status === 404) {
+                setError('Account not found. Please register.');
+            } else {
+                setError(error.message || 'Internal Server Error');
+            }
         }
     };
+
     if (user) {
         return <Navigate to="/" />;
     }

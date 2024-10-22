@@ -13,12 +13,10 @@ const RegisterPage = () => {
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
         try {
             if (!name || !email || !password || !secPassword) {
                 throw new Error('Please fill in all fields');
-            } else if (password !== secPassword) {
-                //에러:페스워드가 일치하지 않는다
-                throw new Error('Passwords do not match!');
             }
             const response = await api.post('/user', { name, email, password });
             console.log('rrrr', response);
@@ -27,14 +25,19 @@ const RegisterPage = () => {
                 navigate('/login');
             } else if (response.status === 409) {
                 setError('User with this email already exists. Please use a different email.');
-            } else if (response.status === 400 && response.data.error.includes('already registered')) {
-                setError('You are already a registered user. Please log in instead.'); // Display error message for already registered user
+            } else if (response.status === 400) {
+                throw new Error(
+                    response.data.error.message || 'You are already a registered user. Please log in instead.'
+                );
             } else {
-                throw new Error(response.data.error.message);
+                throw new Error(response.data.error ? response.data.error.message : 'An error occurred');
             }
         } catch (error) {
-            const errorMessage = error.response.data.error ? error.response.data.error : 'An error occurred';
-            setError(errorMessage);
+            setError(
+                error.response?.data?.error ||
+                    error.message ||
+                    'You are already a registered user. Please log in instead.'
+            );
         }
     };
     return (

@@ -25,9 +25,11 @@ const Navigation = ({ handleLogout, isLoggedIn }) => {
                                 </Link>
                             </>
                         )}
-                        <button className="login_link" onClick={handleLogout}>
-                            Logout
-                        </button>
+                        {isLoggedIn && (
+                            <button className="login_link" onClick={handleLogout}>
+                                Logout
+                            </button>
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
