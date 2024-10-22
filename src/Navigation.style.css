@@ -1,15 +1,21 @@
+.Navbar-collapse {
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    align-items: center; /* Align items to the center horizontally */
+    justify-content: center; /* Align items to the center vertically */
+}
 .link {
     margin: 1em;
     font-weight: bold;
     cursor: pointer;
     text-decoration: none; /* Remove underline from links */
     color: black; /* Change text color to black */
+    text-align: center; 
 }
 
 .login_link {
     border: none;
     margin: 1em;
-    padding: 0; /* Remove padding */
     background: none;
     font-weight: bold;/* Hide the text by making it transparent */
     cursor: pointer;

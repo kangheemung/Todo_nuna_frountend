@@ -12,9 +12,6 @@ const Navigation = ({ handleLogout, isLoggedIn }) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Link to="/" className="link">
-                            Todo
-                        </Link>
                         {!isLoggedIn && (
                             <>
                                 <Link to="/user" className="link">
@@ -26,9 +23,14 @@ const Navigation = ({ handleLogout, isLoggedIn }) => {
                             </>
                         )}
                         {isLoggedIn && (
-                            <button className="login_link" onClick={handleLogout}>
-                                Logout
-                            </button>
+                            <Nav className="mr-auto">
+                                <Link to="/" className="link">
+                                    Todo
+                                </Link>
+                                <button className="login_link" onClick={handleLogout}>
+                                    Logout
+                                </button>
+                            </Nav>
                         )}
                     </Nav>
                 </Navbar.Collapse>
