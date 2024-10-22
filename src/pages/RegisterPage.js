@@ -18,13 +18,17 @@ const RegisterPage = () => {
                 throw new Error('Please fill in all fields');
             } else if (password !== secPassword) {
                 //에러:페스워드가 일치하지 않는다
-                throw new Error('not match password!');
+                throw new Error('Passwords do not match!');
             }
             const response = await api.post('/user', { name, email, password });
             console.log('rrrr', response);
             ///api
             if (response.status === 200) {
                 navigate('/login');
+            } else if (response.status === 409) {
+                setError('User with this email already exists. Please use a different email.');
+            } else if (response.status === 400 && response.data.error.includes('already registered')) {
+                setError('You are already a registered user. Please log in instead.'); // Display error message for already registered user
             } else {
                 throw new Error(response.data.error);
             }
