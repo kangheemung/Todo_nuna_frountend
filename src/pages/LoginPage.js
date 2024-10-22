@@ -28,10 +28,21 @@ const LoginPage = ({ user, setUser }) => {
                 api.defaults.headers['authorization'] = 'Bearer ' + response?.data?.token;
                 setError('');
                 navigate('/');
+            } else if (response.status === 409) {
+                setError(response.data.error.message);
+            } else if (response.status === 400) {
+                throw new Error(response.data.error.message);
+            } else {
+                throw new Error(response.data.error ? response.data.error.message : 'An error occurred');
             }
-            throw new Error(response.data.message);
         } catch (error) {
-            setError(error.message);
+            if (error.response && error.response.status === 400) {
+                setError(error.response.data.message); // エラーメッセージ修正
+            } else if (error.response && error.response.status === 404) {
+                setError('Account not found. Please register.');
+            } else {
+                setError(error.message || 'Internal Server Error');
+            }
         }
     };
 
