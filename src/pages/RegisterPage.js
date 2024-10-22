@@ -30,10 +30,11 @@ const RegisterPage = () => {
             } else if (response.status === 400 && response.data.error.includes('already registered')) {
                 setError('You are already a registered user. Please log in instead.'); // Display error message for already registered user
             } else {
-                throw new Error(response.data.error);
+                throw new Error(response.data.error.message);
             }
         } catch (error) {
-            setError(error.message);
+            const errorMessage = error.response.data.error ? error.response.data.error : 'An error occurred';
+            setError(errorMessage);
         }
     };
     return (

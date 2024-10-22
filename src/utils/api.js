@@ -4,7 +4,7 @@ const api = axios.create({
     baseURL: `${process.env.REACT_APP_BECKEND_PROXY}/api`,
     headers: {
         'Content-Type': 'application/json',
-        authorization : 'Bearer ' + sessionStorage.getItem('token'),
+        authorization: 'Bearer ' + sessionStorage.getItem('token'),
     },
 });
 /**
@@ -16,7 +16,7 @@ api.interceptors.request.use(
         return request;
     },
     function (error) {
-        console.log('REQUEST ERROR', error);
+        console.log('REQUEST ERROR', error.message);
     }
 );
 
@@ -27,8 +27,8 @@ api.interceptors.response.use(
     },
     function (error) {
         error = error.response.data;
-        console.log('RESPONSE ERROR', error);
-        return Promise.reject(error);
+        console.log('RESPONSE ERROR', error.message);
+        return Promise.reject(error.message);
     }
 );
 
