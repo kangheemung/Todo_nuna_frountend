@@ -28,8 +28,12 @@ const LoginPage = ({ user, setUser }) => {
                 api.defaults.headers['authorization'] = 'Bearer ' + response?.data?.token;
                 setError('');
                 navigate('/');
+            } else if (response.status === 409) {
+                setError(response.data.error.message);
+            } else if (response.status === 400) {
+                throw new Error(response.data.error.message);
             } else {
-                throw new Error(response?.data?.message || 'An error occurred during login.');
+                throw new Error(response.data.error ? response.data.error.message : 'An error occurred');
             }
         } catch (error) {
             if (error.response && error.response.status === 404) {
