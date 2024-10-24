@@ -16,15 +16,15 @@ function App() {
     const getUser = async () => {
         //토큰을 통해 유저 정보를 가져온다.
         try {
-            const storedToken = sessionStorage.getItem('token');
+            const storedToken = sessionStorage.setItem('token');
             if (storedToken) {
                 const response = await api.get('/user/me');
                 console.log('API Response:', response); // Log the full response object for debugging
-                    setUser(response.data.user);
-                } else {
-                    console.error('User data not found in response');
-                    setUser(null);
-                }
+                setUser(response.data.user);
+            } else {
+                console.error('User data not found in response');
+                setUser(null);
+            }
             // const response = api.get('/user/??');
         } catch (error) {
             console.error('Error fetching user data:', error);
