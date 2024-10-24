@@ -20,8 +20,6 @@ function App() {
             if (storedToken) {
                 const response = await api.get('/user/me');
                 setUser(response.data.user);
-            } else {
-                navigate('/login'); // トークンがない場合はユーザーをnullに設定する
             }
             // const response = api.get('/user/??');
         } catch (error) {
@@ -37,7 +35,7 @@ function App() {
     };
     useEffect(() => {
         getUser();
-    }, [navigate]);
+    }, []);
     return (
         <>
             <Navigation handleLogout={handleLogout} setUser={setUser} isLoggedIn={isLoggedIn} />
