@@ -18,11 +18,7 @@ function App() {
         try {
             const storedToken = sessionStorage.getItem('token');
             if (storedToken) {
-                const response = await api.get('/user/me', {
-                    headers: {
-                        Authorization: `Bearer ${storedToken}`,
-                    },
-                });
+                const response = await api.get('/user/me');
                 setUser(response.data.user);
             } else {
                 setUser(null); // トークンがない場合はユーザーをnullに設定する
