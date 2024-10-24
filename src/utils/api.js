@@ -11,16 +11,12 @@ const api = axios.create({
  * console.log all requests and responses
  */
 api.interceptors.request.use(
-    (config) => {
-        const storedToken = sessionStorage.getItem('token');
-        if (storedToken) {
-            config.headers.Authorization = `Bearer ${storedToken}`;
-        }
-        return config;
+    (request) => {
+        console.log('Starting Request', request);
+        return request;
     },
-    (error) => {
-        console.error('REQUEST ERROR', error.message);
-        return Promise.reject(error);
+    function (error) {
+        console.log('REQUEST ERROR', error);
     }
 );
 
