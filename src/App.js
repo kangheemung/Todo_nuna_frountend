@@ -47,7 +47,7 @@ function App() {
                     path="/"
                     element={
                         <PrivateRoute user={user}>
-                            <TodoPage user={user} setUser={setUser} isLoggedIn={isLoggedIn} />
+                            <TodoPage setUser={setUser} isLoggedIn={isLoggedIn} />
                         </PrivateRoute>
                     }
                 />
