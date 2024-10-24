@@ -45,7 +45,7 @@ function App() {
 
             <Routes>
                 <Route
-                    path="/"
+                    path="/todo"
                     element={
                         <PrivateRoute user={user}>
                             <TodoPage
@@ -57,7 +57,7 @@ function App() {
                         </PrivateRoute>
                     }
                 />
-                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage user={user} setUser={setUser} />} />
             </Routes>
         </>
