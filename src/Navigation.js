@@ -14,7 +14,7 @@ const Navigation = ({ handleLogout, isLoggedIn }) => {
                     <Nav className="mr-auto">
                         {!isLoggedIn && (
                             <>
-                                <Link to="/user" className="link">
+                                <Link to="/register" className="link">
                                     Register
                                 </Link>
                                 <Link to="/login" className="link">

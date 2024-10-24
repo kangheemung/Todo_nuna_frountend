@@ -49,7 +49,7 @@ function App() {
                         </PrivateRoute>
                     }
                 />
-                <Route path="/user" element={<RegisterPage />} />
+                <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage user={user} setUser={setUser} />} />
             </Routes>
         </>
