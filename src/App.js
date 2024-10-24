@@ -45,7 +45,7 @@ function App() {
 
             <Routes>
                 <Route
-                    path="/todo"
+                    path="/task"
                     element={
                         <PrivateRoute user={user}>
                             <TodoPage

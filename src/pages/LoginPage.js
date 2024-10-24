@@ -25,9 +25,9 @@ const LoginPage = ({ user, setUser }) => {
             if (response && response.status === 200) {
                 setUser(response.data.user);
                 sessionStorage.setItem('token', response.data.token);
-                api.defaults.headers['authorization'] = 'Bearer ' + response.data.token;
+                api.defaults.headers['authorization'] = 'Bearer ' + response.data?.token;
                 setError('');
-                navigate('/todo');
+                navigate('/task');
             } else if (response.status === 409) {
                 setError(response.data.error.message);
             } else if (response.status === 400) {
@@ -47,7 +47,7 @@ const LoginPage = ({ user, setUser }) => {
     };
 
     if (user) {
-        return <Navigate to="/todo" />;
+        return <Navigate to="/task" />;
     }
     return (
         <div className="display-center">

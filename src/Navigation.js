@@ -17,14 +17,14 @@ const Navigation = ({ handleLogout, isLoggedIn }) => {
                                 <Link to="/register" className="link">
                                     Register
                                 </Link>
-                                <Link to="/login" className="link">
+                                <Link to="/" className="link">
                                     Login
                                 </Link>
                             </>
                         )}
                         {isLoggedIn && (
                             <Nav className="mr-auto">
-                                <Link to="/" className="link">
+                                <Link to="/task" className="link">
                                     Todo
                                 </Link>
                                 <button className="login_link" onClick={handleLogout}>
