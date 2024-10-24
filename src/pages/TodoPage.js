@@ -7,13 +7,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 
-const TodoPage = () => {
+const TodoPage = ({ user, setUser }) => {
     // const { id } = useParams();
     //저장 스테이트
     const [todoList, setTodoList] = useState([]);
     const [todoValue, setTodoValue] = useState('');
 
     const getTasks = async () => {
+        if (!user) {
+            return <div>Please log in to view this page.</div>; // Render a message if user is not authenticated
+        }
         const response = await api.get('/task');
         console.log(response.data.data);
         setTodoList(response.data.data);
@@ -26,7 +29,6 @@ const TodoPage = () => {
             const res = await api.post('/task', {
                 task: todoValue,
                 isComplete: false,
-  
             });
             if (res.status === 200) {
                 console.log('성공');

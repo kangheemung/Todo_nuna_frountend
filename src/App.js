@@ -21,12 +21,12 @@ function App() {
                 const response = await api.get('/user/me');
                 setUser(response.data.user);
             } else {
-                setUser(null); // トークンがない場合はユーザーをnullに設定する
+                navigate('/login'); // トークンがない場合はユーザーをnullに設定する
             }
             // const response = api.get('/user/??');
         } catch (error) {
             console.error('Error fetching user data:', error);
-            setUser(null);
+            navigate('/login');
         }
     };
     const handleLogout = () => {
@@ -37,7 +37,7 @@ function App() {
     };
     useEffect(() => {
         getUser();
-    }, []);
+    }, [navigate]);
     return (
         <>
             <Navigation handleLogout={handleLogout} setUser={setUser} isLoggedIn={isLoggedIn} />
