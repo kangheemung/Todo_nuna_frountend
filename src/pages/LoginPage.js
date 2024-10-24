@@ -23,9 +23,9 @@ const LoginPage = ({ user, setUser }) => {
             console.log(response); // レスポンス内容を確認
 
             if (response && response.status === 200) {
-                setUser(response?.data?.user);
-                sessionStorage.setItem('token', response?.data?.token);
-                api.defaults.headers['authorization'] = 'Bearer ' + response?.data?.token;
+                setUser(response.data.user);
+                sessionStorage.setItem('token', response.data.token);
+                api.defaults.headers['authorization'] = 'Bearer ' + response.data.token;
                 setError('');
                 navigate('/');
             } else if (response.status === 409) {

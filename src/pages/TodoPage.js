@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TodoBoard from '../components/TodoBoard';
 import api from '../utils/api';
@@ -7,15 +8,19 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 
-const TodoPage = ({ user, setUser }) => {
+const TodoPage = ({ user, setUser, handleLogout }) => {
     // const { id } = useParams();
     //저장 스테이트
+    const performLogout = () => {
+        handleLogout();
+    };
+
     const [todoList, setTodoList] = useState([]);
     const [todoValue, setTodoValue] = useState('');
 
     const getTasks = async () => {
         const response = await api.get('/task');
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setTodoList(response.data.data);
     };
     useEffect(() => {
@@ -73,26 +78,32 @@ const TodoPage = ({ user, setUser }) => {
         }
     };
     return (
-        <Container>
-            <Row className="add-item-row">
-                <Col xs={12} sm={10}>
-                    <input
-                        type="text"
-                        placeholder="할일을 입력하세요"
-                        className="input-box"
-                        value={todoValue}
-                        onChange={(e) => setTodoValue(e.target.value)}
-                        onKeyPress={handleKeyPress}
-                    />
-                </Col>
-                <Col xs={12} sm={2}>
-                    <button className="button-add" onClick={addTask}>
-                        추가
-                    </button>
-                </Col>
-            </Row>
-            <TodoBoard todoList={todoList} deleteTask={deleteTask} updateTask={updateTask} />
-        </Container>
+        <div>
+            <Button variant="danger" onClick={performLogout}>
+                Logout
+            </Button>
+
+            <Container>
+                <Row className="add-item-row">
+                    <Col xs={12} sm={10}>
+                        <input
+                            type="text"
+                            placeholder="할일을 입력하세요"
+                            className="input-box"
+                            value={todoValue}
+                            onChange={(e) => setTodoValue(e.target.value)}
+                            onKeyPress={handleKeyPress}
+                        />
+                    </Col>
+                    <Col xs={12} sm={2}>
+                        <button className="button-add" onClick={addTask}>
+                            추가
+                        </button>
+                    </Col>
+                </Row>
+                <TodoBoard todoList={todoList} deleteTask={deleteTask} updateTask={updateTask} />
+            </Container>
+        </div>
     );
 };
 

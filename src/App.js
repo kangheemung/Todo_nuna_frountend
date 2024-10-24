@@ -19,9 +19,12 @@ function App() {
             const storedToken = sessionStorage.getItem('token');
             if (storedToken) {
                 const response = await api.get('/user/me');
-                setUser(response.data.user);
-                console.log(response.data.user);
-            }
+                console.log('API Response:', response); // Log the full response object for debugging
+                    setUser(response.data.user);
+                } else {
+                    console.error('User data not found in response');
+                    setUser(null);
+                }
             // const response = api.get('/user/??');
         } catch (error) {
             console.error('Error fetching user data:', error);
@@ -45,7 +48,12 @@ function App() {
                     path="/"
                     element={
                         <PrivateRoute user={user}>
-                            <TodoPage user={user} setUser={setUser} isLoggedIn={isLoggedIn} />
+                            <TodoPage
+                                user={user}
+                                setUser={setUser}
+                                isLoggedIn={isLoggedIn}
+                                handleLogout={handleLogout}
+                            />
                         </PrivateRoute>
                     }
                 />
