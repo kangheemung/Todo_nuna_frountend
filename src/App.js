@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import TodoPage from './pages/TodoPage';
 import RegisterPage from './pages/RegisterPage';
@@ -10,7 +10,7 @@ import PrivateRoute from './route/PrivateRoute';
 import api from './utils/api';
 function App() {
     const [user, setUser] = useState(null);
-    const navigate = useNavigate();
+
     const isLoggedIn = !!user;
 
     const getUser = async () => {
@@ -20,6 +20,7 @@ function App() {
             if (storedToken) {
                 const response = await api.get('/user/me');
                 setUser(response.data.user);
+                console.log(response.data.user);
             }
             // const response = api.get('/user/??');
         } catch (error) {
@@ -31,7 +32,6 @@ function App() {
         // Clear user session and redirect to login page
         sessionStorage.removeItem('token');
         setUser(null);
-        navigate('/login'); // Redirect to login page after logout
     };
     useEffect(() => {
         getUser();

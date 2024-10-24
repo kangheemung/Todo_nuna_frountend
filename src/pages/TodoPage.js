@@ -36,6 +36,7 @@ const TodoPage = ({ user, setUser }) => {
             setTodoValue('');
         } catch (err) {
             console.error('Error adding task:', err);
+            getTasks();
         }
     };
 
