@@ -16,7 +16,7 @@ function App() {
     const getUser = async () => {
         //토큰을 통해 유저 정보를 가져온다.
         try {
-            const storedToken = sessionStorage.setItem('token');
+            const storedToken = sessionStorage.getItem('token');
             if (storedToken) {
                 const response = await api.get('/user/me');
                 console.log('API Response:', response); // Log the full response object for debugging
