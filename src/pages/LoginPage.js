@@ -47,7 +47,7 @@ const LoginPage = ({ user, setUser }) => {
     };
 
     if (user) {
-        return <Navigate to="/" />;
+        return <Navigate to="/todo" />;
     }
     return (
         <div className="display-center">
