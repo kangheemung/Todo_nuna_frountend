@@ -12,16 +12,17 @@ function App() {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const isLoggedIn = !!user;
+    
     const getUser = async () => {
         //토큰을 통해 유저 정보를 가져온다.
         try {
             const storedToken = sessionStorage.getItem('token');
             if (storedToken) {
-                // api.defaults.headers['authorization'] = 'Bearer ' + storedToken;
-                const url = '/user/me';
-                console.log('Requesting URL:', api.defaults.baseURL + url);
-                const response = await api.get(url);
-                console.log('Response Data:', response.data);
+                const response = await api.get('/user/me', {
+                    headers: {
+                        Authorization: `Bearer ${storedToken}`
+                    }
+                });
                 setUser(response.data.user);
             }
             // const response = api.get('/user/??');
