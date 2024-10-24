@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 
-const TodoPage = ({ setUser }) => {
+const TodoPage = ({ user, setUser }) => {
     // const { id } = useParams();
     //저장 스테이트
     const [todoList, setTodoList] = useState([]);
