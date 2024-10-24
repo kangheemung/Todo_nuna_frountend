@@ -24,7 +24,7 @@ function App() {
             // const response = api.get('/user/??');
         } catch (error) {
             console.error('Error fetching user data:', error);
-            navigate('/login');
+            setUser(null);
         }
     };
     const handleLogout = () => {
