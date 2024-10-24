@@ -27,7 +27,7 @@ const LoginPage = ({ user, setUser }) => {
                 sessionStorage.setItem('token', response.data.token);
                 api.defaults.headers['authorization'] = 'Bearer ' + response.data.token;
                 setError('');
-                navigate('/');
+                navigate('/todo');
             } else if (response.status === 409) {
                 setError(response.data.error.message);
             } else if (response.status === 400) {
