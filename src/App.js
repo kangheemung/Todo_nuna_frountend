@@ -12,16 +12,16 @@ function App() {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const isLoggedIn = !!user;
-    
+
     const getUser = async () => {
         //토큰을 통해 유저 정보를 가져온다.
         try {
             const storedToken = sessionStorage.getItem('token');
             if (storedToken) {
                 const response = await api.get('/user/me', {
-                    headers: {
-                        Authorization: `Bearer ${storedToken}`
-                    }
+                    // headers: {
+                    //     Authorization: `Bearer ${storedToken}`
+                    // }
                 });
                 setUser(response.data.user);
             }
@@ -42,14 +42,14 @@ function App() {
     }, []);
     return (
         <>
-            <Navigation handleLogout={handleLogout} isLoggedIn={isLoggedIn} />
+            <Navigation handleLogout={handleLogout} setUser={setUser} isLoggedIn={isLoggedIn} />
 
             <Routes>
                 <Route
                     path="/"
                     element={
                         <PrivateRoute user={user}>
-                            <TodoPage />
+                            <TodoPage setUser={setUser} isLoggedIn={isLoggedIn} />
                         </PrivateRoute>
                     }
                 />
