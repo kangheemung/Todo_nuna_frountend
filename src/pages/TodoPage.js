@@ -14,9 +14,6 @@ const TodoPage = ({ setUser }) => {
     const [todoValue, setTodoValue] = useState('');
 
     const getTasks = async () => {
-        if (!user) {
-            return <div>Please log in to view this page.</div>; // Render a message if user is not authenticated
-        }
         const response = await api.get('/task');
         console.log(response.data.data);
         setTodoList(response.data.data);
