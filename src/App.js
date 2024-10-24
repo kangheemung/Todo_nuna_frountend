@@ -19,11 +19,13 @@ function App() {
             const storedToken = sessionStorage.getItem('token');
             if (storedToken) {
                 const response = await api.get('/user/me', {
-                    // headers: {
-                    //     Authorization: `Bearer ${storedToken}`
-                    // }
+                    headers: {
+                        Authorization: `Bearer ${storedToken}`,
+                    },
                 });
                 setUser(response.data.user);
+            } else {
+                setUser(null); // トークンがない場合はユーザーをnullに設定する
             }
             // const response = api.get('/user/??');
         } catch (error) {
@@ -49,7 +51,7 @@ function App() {
                     path="/"
                     element={
                         <PrivateRoute user={user}>
-                            <TodoPage setUser={setUser} isLoggedIn={isLoggedIn} />
+                            <TodoPage user={user} setUser={setUser} isLoggedIn={isLoggedIn} />
                         </PrivateRoute>
                     }
                 />
